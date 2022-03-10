@@ -10,6 +10,9 @@ use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ClientesController;
 
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\SeguridadController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,79 +29,92 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/* EMPLEADOS */
-
-Route::get('/empleados', [EmpleadosController::class, 'obtenerLista']);
-Route::get('/empleados/{id}', [EmpleadosController::class, 'obtenerItem']);
-
-Route::post('/empleados', [EmpleadosController::class, 'store']);
-
-Route::put('/empleados', [EmpleadosController::class, 'update']);
-// Route::patch('v1/productos', [ProductosController::class, 'patch']);
-Route::delete('/empleados/{id}', [EmpleadosController::class, 'delete']);
 
 
-/* CATEGORIAS */
+Route::middleware('auth:api')->group(function(){
+
+    /* EMPLEADOS */
+
+    Route::get('/empleados', [EmpleadosController::class, 'obtenerLista']);
+    Route::get('/empleados/{id}', [EmpleadosController::class, 'obtenerItem']);
+
+    Route::post('/empleados', [EmpleadosController::class, 'store']);
+
+    Route::put('/empleados', [EmpleadosController::class, 'update']);
+    // Route::patch('v1/productos', [ProductosController::class, 'patch']);
+    Route::delete('/empleados/{id}', [EmpleadosController::class, 'delete']);
 
 
-Route::get('/categorias', [CategoriasController::class, 'obtenerLista']);
-Route::get('/categorias/{id}', [CategoriasController::class, 'obtenerItem']);
-
-Route::post('/categorias', [CategoriasController::class, 'store']);
-
-Route::put('/categorias', [CategoriasController::class, 'update']);
-// Route::patch('v1/productos', [ProductosController::class, 'patch']);
-Route::delete('/categorias/{id}', [CategoriasController::class, 'delete']);
+    /* CATEGORIAS */
 
 
-/* PEDIDOS */
+    Route::get('/categorias', [CategoriasController::class, 'obtenerLista']);
+    Route::get('/categorias/{id}', [CategoriasController::class, 'obtenerItem']);
+
+    Route::post('/categorias', [CategoriasController::class, 'store']);
+
+    Route::put('/categorias', [CategoriasController::class, 'update']);
+    // Route::patch('v1/productos', [ProductosController::class, 'patch']);
+    Route::delete('/categorias/{id}', [CategoriasController::class, 'delete']);
 
 
-Route::get('/pedidos', [PedidosController::class, 'obtenerLista']);
-Route::get('/pedidos/{id}', [PedidosController::class, 'obtenerItem']);
+    /* PEDIDOS */
 
-Route::post('/pedidos', [PedidosController::class, 'store']);
 
-Route::put('/pedidos', [PedidosController::class, 'update']);
-// Route::patch('v1/productos', [ProductosController::class, 'patch']);
-Route::delete('/pedidos/{id}', [PedidosController::class, 'delete']);
+    Route::get('/pedidos', [PedidosController::class, 'obtenerLista']);
+    Route::get('/pedidos/{id}', [PedidosController::class, 'obtenerItem']);
 
-/* CLIENTES */
+    Route::post('/pedidos', [PedidosController::class, 'store']);
 
-Route::get('/clientes', [ClientesController::class, 'obtenerLista']);
-Route::get('/clientes/{id}', [ClientesController::class, 'obtenerItem']);
+    Route::put('/pedidos', [PedidosController::class, 'update']);
+    // Route::patch('v1/productos', [ProductosController::class, 'patch']);
+    Route::delete('/pedidos/{id}', [PedidosController::class, 'delete']);
 
-Route::post('/clientes', [ClientesController::class, 'store']);
+    /* CLIENTES */
 
-Route::put('/clientes', [ClientesController::class, 'update']);
-// Route::patch('v1/productos', [ProductosController::class, 'patch']);
-Route::delete('/clientes/{id}', [ClientesController::class, 'delete']);
+    Route::get('/clientes', [ClientesController::class, 'obtenerLista']);
+    Route::get('/clientes/{id}', [ClientesController::class, 'obtenerItem']);
 
-/* PRODUCTOS */
+    Route::post('/clientes', [ClientesController::class, 'store']);
 
-Route::get('/productos', [ProductosController::class, 'obtenerLista']);
-Route::get('/productos/{id}', [ProductosController::class, 'obtenerItem']);
+    Route::put('/clientes', [ClientesController::class, 'update']);
+    // Route::patch('v1/productos', [ProductosController::class, 'patch']);
+    Route::delete('/clientes/{id}', [ClientesController::class, 'delete']);
 
-Route::post('/productos', [ProductosController::class, 'store']);
+    /* PRODUCTOS */
 
-Route::put('/productos', [ProductosController::class, 'update']);
-// Route::patch('v1/productos', [ProductosController::class, 'patch']);
-Route::delete('/productos/{id}', [ProductosController::class, 'delete']);
+    Route::get('/productos', [ProductosController::class, 'obtenerLista']);
+    Route::get('/productos/{id}', [ProductosController::class, 'obtenerItem']);
 
-/* PROVEEDORES */
+    Route::post('/productos', [ProductosController::class, 'store']);
 
-Route::get('/proveedores', [ProveedoresController::class, 'obtenerLista']);
-Route::get('/proveedores/{id}', [ProveedoresController::class, 'obtenerItem']);
-Route::post('/proveedores', [ProveedoresController::class, 'store']);
-Route::put('/proveedores', [ProveedoresController::class, 'update']);
-// Route::patch('v1/productos', [ProductosController::class, 'patch']);
-Route::delete('/proveedores/{id}', [ProveedoresController::class, 'delete']);
+    Route::put('/productos', [ProductosController::class, 'update']);
+    // Route::patch('v1/productos', [ProductosController::class, 'patch']);
+    Route::delete('/productos/{id}', [ProductosController::class, 'delete']);
 
-/* MARCAS */
+    /* PROVEEDORES */
 
-Route::get('/marcas', [MarcasController::class, 'obtenerLista']);
-Route::get('/marcas/{id}', [MarcasController::class, 'obtenerItem']);
-Route::post('/marcas', [MarcasController::class, 'store']);
-Route::put('/marcas', [MarcasController::class, 'update']);
-// Route::patch('v1/productos', [ProductosController::class, 'patch']);
-Route::delete('/marcas/{id}', [MarcasController::class, 'delete']);
+    Route::get('/proveedores', [ProveedoresController::class, 'obtenerLista']);
+    Route::get('/proveedores/{id}', [ProveedoresController::class, 'obtenerItem']);
+    Route::post('/proveedores', [ProveedoresController::class, 'store']);
+    Route::put('/proveedores', [ProveedoresController::class, 'update']);
+    // Route::patch('v1/productos', [ProductosController::class, 'patch']);
+    Route::delete('/proveedores/{id}', [ProveedoresController::class, 'delete']);
+
+    /* MARCAS */
+
+    Route::get('/marcas', [MarcasController::class, 'obtenerLista']);
+    Route::get('/marcas/{id}', [MarcasController::class, 'obtenerItem']);
+    Route::post('/marcas', [MarcasController::class, 'store']);
+    Route::put('/marcas', [MarcasController::class, 'update']);
+    // Route::patch('v1/productos', [ProductosController::class, 'patch']);
+    Route::delete('/marcas/{id}', [MarcasController::class, 'delete']);
+
+
+    /* Router de Seguridad */
+    Route::post('/users', [UsersController::class, 'store']);
+});
+
+
+/* Router de LOGIN */
+Route::post('/seguridad/login', [SeguridadController::class, 'login']);
