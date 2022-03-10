@@ -38,7 +38,7 @@ class PedidosController extends Controller
 
 		if($pedido)
 		{
-            $pedido->pedido=$request->pedido;
+            $pedido->empleado=$request->empleado;
             $pedido->cliente=$request->cliente;
             $pedido->direccion=$request->direccion;
             $pedido->fecha_pedido=$request->fecha_pedido;
@@ -57,7 +57,7 @@ class PedidosController extends Controller
     function store(Request $request)
 	{
 		$pedido = new Pedido();
-        $pedido->pedido=$request->pedido;
+        $pedido->empleado=$request->empleado;
         $pedido->cliente=$request->cliente;
         $pedido->direccion=$request->direccion;
         $pedido->fecha_pedido=$request->fecha_pedido;

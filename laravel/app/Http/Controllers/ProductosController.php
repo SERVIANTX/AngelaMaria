@@ -10,8 +10,7 @@ class ProductosController extends Controller
 {
     function obtenerLista()
 	{
-		$productos =  Producto::all();
-
+		$productos =  Producto::with("categoria","marca")->get();
 
 		$response = new \stdClass();
 		$response->success=true;
@@ -22,9 +21,10 @@ class ProductosController extends Controller
 
     function obtenerItem($id)
 	{
+
 		$productos =  Producto::find($id);
-
-
+		//$productos =  Producto::where("id","=",$id)->with("categoria","marca")->get();
+		
 		$response = new \stdClass();
 		$response->success=true;
 		$response->data=$productos;
@@ -39,7 +39,10 @@ class ProductosController extends Controller
 
 		if($productos)
 		{
-            $productos->nombre_producto=$request->nombre_producto;
+            $productos->imagen=$request->imagen;
+			$productos->nombre_producto=$request->nombre_producto;
+			$productos->categoria_id=$request->categoria_id;
+			$productos->marca_id=$request->marca_id;
             $productos->descripcion=$request->descripcion;
             $productos->stock=$request->stock;
             $productos->precio_venta=$request->precio_venta;
@@ -82,7 +85,10 @@ class ProductosController extends Controller
 	function store(Request $request)
 	{
 		$productos = new Producto();
+		$productos->imagen=$request->imagen;
 		$productos->nombre_producto=$request->nombre_producto;
+		$productos->categoria_id=$request->categoria_id;
+		$productos->marca_id=$request->marca_id;
         $productos->descripcion=$request->descripcion;
         $productos->stock=$request->stock;
         $productos->precio_venta=$request->precio_venta;

@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpleadosController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\PedidosController;
+use App\Http\Controllers\MarcasController;
+use App\Http\Controllers\ProveedoresController;
+use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\ClientesController;
 
 
 /*
