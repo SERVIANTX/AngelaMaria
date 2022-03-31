@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+
 
 class CategoriasController extends Controller
 {
@@ -20,11 +22,21 @@ class CategoriasController extends Controller
 		return response()->json($response,200);
 	}
 
+	function obtenerNombre()
+	{
+		//$marca =  Marca::all();
+		/*$marca =  DB::table('marcas')
+               ->where('nombre', 'like', 'pruebax2%')
+              ->get();*/
+			  $categorias = DB::select('SELECT id,nombre_categoria FROM categorias');
+			  
+			 
+		return response($categorias);
+	}
+
     function obtenerItem($id)
 	{
 		$categoria =  Categoria::find($id);
-
-
 		$response = new \stdClass();
 		$response->success=true;
 		$response->data=$categoria;

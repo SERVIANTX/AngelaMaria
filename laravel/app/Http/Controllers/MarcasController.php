@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Marca;
@@ -18,6 +18,18 @@ class MarcasController extends Controller
 		$response->data=$marca;
 
 		return response()->json($response,200);
+	}
+
+	function obtenerNombre()
+	{
+		//$marca =  Marca::all();
+		/*$marca =  DB::table('marcas')
+               ->where('nombre', 'like', 'pruebax2%')
+              ->get();*/
+			  $marca = DB::select('SELECT id,nombre FROM marcas');
+			  
+			 
+		return response($marca);
 	}
 
     function obtenerItem($id)

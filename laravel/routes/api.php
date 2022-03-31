@@ -9,6 +9,7 @@ use App\Http\Controllers\MarcasController;
 use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\DetallesPedidosController;
 
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SeguridadController;
@@ -49,6 +50,7 @@ Route::middleware('auth:api')->group(function(){
 
 
     Route::get('/categorias', [CategoriasController::class, 'obtenerLista']);
+    Route::get('/categoriasnombre', [CategoriasController::class, 'obtenerNombre']);
     Route::get('/categorias/{id}', [CategoriasController::class, 'obtenerItem']);
 
     Route::post('/categorias', [CategoriasController::class, 'store']);
@@ -73,6 +75,7 @@ Route::middleware('auth:api')->group(function(){
     /* CLIENTES */
 
     Route::get('/clientes', [ClientesController::class, 'obtenerLista']);
+    Route::get('/clientesnombre', [ClientesController::class, 'obtenerNombre']);
     Route::get('/clientes/{id}', [ClientesController::class, 'obtenerItem']);
 
     Route::post('/clientes', [ClientesController::class, 'store']);
@@ -83,7 +86,7 @@ Route::middleware('auth:api')->group(function(){
 
     /* PRODUCTOS */
 
-    Route::get('/productos', [ProductosController::class, 'obtenerLista']);
+    
     Route::get('/productos/{id}', [ProductosController::class, 'obtenerItem']);
 
     Route::post('/productos', [ProductosController::class, 'store']);
@@ -101,9 +104,16 @@ Route::middleware('auth:api')->group(function(){
     // Route::patch('v1/productos', [ProductosController::class, 'patch']);
     Route::delete('/proveedores/{id}', [ProveedoresController::class, 'delete']);
 
+     /* DetallePedido */
+
+     Route::get('/detallepedidos', [ProveedoresController::class, 'obtenerLista']);
+     Route::get('/detallepedidos/{id}', [ProveedoresController::class, 'obtenerItem']);
+     Route::post('/detallepedidos', [ProveedoresController::class, 'store']);
+
     /* MARCAS */
 
     Route::get('/marcas', [MarcasController::class, 'obtenerLista']);
+    Route::get('/marcasnombre', [MarcasController::class, 'obtenerNombre']);
     Route::get('/marcas/{id}', [MarcasController::class, 'obtenerItem']);
     Route::post('/marcas', [MarcasController::class, 'store']);
     Route::put('/marcas', [MarcasController::class, 'update']);
@@ -115,6 +125,6 @@ Route::middleware('auth:api')->group(function(){
     Route::post('/users', [UsersController::class, 'store']);
 });
 
-
+Route::get('/productos', [ProductosController::class, 'obtenerLista']);
 /* Router de LOGIN */
 Route::post('/seguridad/login', [SeguridadController::class, 'login']);

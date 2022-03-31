@@ -15,4 +15,5 @@ class Pedido extends Model
     public $incrementing = false;
     protected $keyType = 'string';
     protected $uuidFieldName = 'id';
+
 }

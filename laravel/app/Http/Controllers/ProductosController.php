@@ -10,7 +10,7 @@ class ProductosController extends Controller
 {
     function obtenerLista()
 	{
-		$productos =  Producto::with("categoria","marca")->get();
+		$productos =  Producto::with("categoria:id,nombre_categoria","marca:id,nombre")->get();
 
 		$response = new \stdClass();
 		$response->success=true;
@@ -18,6 +18,8 @@ class ProductosController extends Controller
 
 		return response()->json($response,200);
 	}
+
+	
 
     function obtenerItem($id)
 	{

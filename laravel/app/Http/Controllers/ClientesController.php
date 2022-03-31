@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
@@ -18,6 +19,15 @@ class ClientesController extends Controller
 		$response->data=$cliente;
 
 		return response()->json($response,200);
+	}
+
+	function obtenerNombre()
+	{
+		
+		$cliente = DB::select("SELECT id, concat_ws(' ', nombre, apellido_paterno, apellido_materno) AS nombrecliente, direccion FROM clientes");
+			  
+			 
+		return response($cliente);
 	}
 
     function obtenerItem($id)

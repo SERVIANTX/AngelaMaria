@@ -38,11 +38,12 @@ class PedidosController extends Controller
 
 		if($pedido)
 		{
-            $pedido->empleado=$request->empleado;
+            
             $pedido->cliente=$request->cliente;
             $pedido->direccion=$request->direccion;
             $pedido->fecha_pedido=$request->fecha_pedido;
             $pedido->fecha_envio=$request->fecha_envio;
+			$pedido->importe=$request->importe;
             $pedido->estado=$request->estado;
 			$pedido->save();
 		}
