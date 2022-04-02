@@ -24,6 +24,7 @@ class UsersController extends Controller
 
         }else{
             $user = new User();
+            $user->roles="Admin";
             $user->name=$request->name;
             $user->imagen=$request->imagen;
             $user->apellidos=$request->apellidos;
