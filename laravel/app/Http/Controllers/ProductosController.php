@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Producto;
 use Illuminate\Http\Request;
@@ -19,7 +20,29 @@ class ProductosController extends Controller
 		return response()->json($response,200);
 	}
 
-	
+	function obtenerNombre()
+	{
+		//$marca =  Marca::all();
+		/*$marca =  DB::table('marcas')
+               ->where('nombre', 'like', 'pruebax2%')
+              ->get();*/
+			  $producto = DB::select('SELECT id,nombre_producto,imagen FROM productos');
+			  
+			 
+		return response($producto);
+	}
+
+	function obtenerDatos($nombreProducto)
+	{
+		//$marca =  Marca::all();
+		/*$marca =  DB::table('marcas')
+               ->where('nombre', 'like', 'pruebax2%')
+              ->get();*/
+			  	$productos = DB::select("SELECT * FROM productos WHERE nombre_producto = '$nombreProducto'");
+		  
+				return response($productos);
+			// return response($productos);
+	}
 
     function obtenerItem($id)
 	{

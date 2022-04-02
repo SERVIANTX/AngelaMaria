@@ -51,6 +51,7 @@ class CategoriasController extends Controller
 		if($categoria)
 		{
             $categoria->nombre_categoria=$request->nombre_categoria;
+			$categoria->imagen=$request->imagen;
             $categoria->estado=$request->estado;
 			$categoria->save();
 		}
@@ -66,6 +67,7 @@ class CategoriasController extends Controller
 	{
 		$categoria = new Categoria();
 		$categoria->nombre_categoria=$request->nombre_categoria;
+		$categoria->imagen=$request->imagen;
         $categoria->estado=$request->estado;
 		$categoria->save();
 

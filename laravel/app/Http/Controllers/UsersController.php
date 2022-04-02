@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+    
     function store(Request $request)
 	{
         $response = new \stdClass();
@@ -24,6 +25,10 @@ class UsersController extends Controller
         }else{
             $user = new User();
             $user->name=$request->name;
+            $user->imagen=$request->imagen;
+            $user->apellidos=$request->apellidos;
+            $user->direccion=$request->direccion;
+            $user->numero_documento=$request->numero_documento;
             $user->email=$request->email;
             $user->password=$request->password;
             $user->save();

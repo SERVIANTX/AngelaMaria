@@ -10,7 +10,7 @@ use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\DetallesPedidosController;
-
+use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SeguridadController;
 
@@ -50,7 +50,7 @@ Route::middleware('auth:api')->group(function(){
 
 
     Route::get('/categorias', [CategoriasController::class, 'obtenerLista']);
-    Route::get('/categoriasnombre', [CategoriasController::class, 'obtenerNombre']);
+
     Route::get('/categorias/{id}', [CategoriasController::class, 'obtenerItem']);
 
     Route::post('/categorias', [CategoriasController::class, 'store']);
@@ -89,6 +89,8 @@ Route::middleware('auth:api')->group(function(){
     
     Route::get('/productos/{id}', [ProductosController::class, 'obtenerItem']);
 
+   
+
     Route::post('/productos', [ProductosController::class, 'store']);
 
     Route::put('/productos', [ProductosController::class, 'update']);
@@ -120,10 +122,16 @@ Route::middleware('auth:api')->group(function(){
     // Route::patch('v1/productos', [ProductosController::class, 'patch']);
     Route::delete('/marcas/{id}', [MarcasController::class, 'delete']);
 
+    Route::get('/usuariosAdmin', [UsuariosController::class, 'obtenerAdmin']);
+    Route::get('/datosAdmin/{datosAdmin}', [UsuariosController::class, 'obtenerDatos']);
+    Route::get('/usuariosClientes', [UsuariosController::class, 'obtenerClientes']);
 
     /* Router de Seguridad */
     Route::post('/users', [UsersController::class, 'store']);
 });
+Route::get('/categoriasnombre', [CategoriasController::class, 'obtenerNombre']);
+Route::get('/productosnombre', [ProductosController::class, 'obtenerNombre']);
+Route::get('/productosdatos/{nombreProducto}', [ProductosController::class, 'obtenerDatos']);
 
 Route::get('/productos', [ProductosController::class, 'obtenerLista']);
 /* Router de LOGIN */
