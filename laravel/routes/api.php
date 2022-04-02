@@ -123,6 +123,9 @@ Route::middleware('auth:api')->group(function(){
     Route::delete('/marcas/{id}', [MarcasController::class, 'delete']);
 
     Route::get('/usuariosAdmin', [UsuariosController::class, 'obtenerAdmin']);
+    Route::post('/ingresarAdmin', [UsuariosController::class, 'storeAdmin']);
+    Route::get('/buscarAdmin/{id}', [UsuariosController::class, 'obtenerItemAdmin']);
+    Route::put('/ActualizarAdmin', [UsuariosController::class, 'updateAdmin']);
     Route::get('/datosAdmin/{datosAdmin}', [UsuariosController::class, 'obtenerDatos']);
     Route::get('/usuariosClientes', [UsuariosController::class, 'obtenerClientes']);
 

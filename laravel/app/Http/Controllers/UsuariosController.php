@@ -13,8 +13,66 @@ class UsuariosController extends Controller
 	{
         $Admin = DB::select('SELECT * FROM users WHERE roles LIKE "Admin"');
 			  
-			 
-		return response($Admin);
+		$response = new \stdClass();
+        $response->success=true;
+        $response->data=$Admin;
+
+		return response()->json($response,200);
+	}
+
+    function storeAdmin(Request $request)
+	{
+		$admin = new Usuarios();
+		$admin->roles="Admin";
+        $admin->imagen=$request->imagen;
+        $admin->name=$request->name;
+        $admin->apellidos=$request->apellidos;
+        $admin->direccion=$request->direccion;
+        $admin->numero_documento=$request->numero_documento;
+        $admin->email=$request->email;
+        $admin->password=$request->password;
+		$admin->save();
+
+		$response = new \stdClass();
+		$response->success=true;
+		$response->data=$admin;
+
+		return response()->json($response,200);
+	}
+
+    function obtenerItemAdmin($id)
+    {
+        $admin =  Usuarios::find($id);
+
+
+        $response = new \stdClass();
+        $response->success=true;
+        $response->data=$admin;
+
+        return response()->json($response,200);
+    }
+
+    function updateAdmin(Request $request)
+	{
+		$admin =  Usuarios::find($request->id);
+
+		if($admin)
+		{
+            $admin->imagen=$request->imagen;
+            $admin->name=$request->name;
+            $admin->apellidos=$request->apellidos;
+            $admin->direccion=$request->direccion;
+            $admin->numero_documento=$request->numero_documento;
+            $admin->email=$request->email;
+            $admin->password=$request->password;
+			$admin->save();
+		}
+
+		$response = new \stdClass();
+		$response->success=true;
+		$response->data=$admin;
+
+		return response()->json($response,200);
 	}
 
     function obtenerDatos($datosAdmin)
@@ -37,108 +95,12 @@ class UsuariosController extends Controller
                ->where('nombre', 'like', 'pruebax2%')
               ->get();*/
 			  $Clientes = DB::select('SELECT * FROM users WHERE roles LIKE "Cliente"');
-			  
+			  $response = new \stdClass();
+                $response->success=true;
+                $response->data=$Clientes;
+
+		return response()->json($response,200);
 			 
-		return response($Clientes);
 	}
-//     function obtenerItem($id)
-// 	{
-// 		$proveedor =  Proveedor::find($id);
 
-
-// 		$response = new \stdClass();
-// 		$response->success=true;
-// 		$response->data=$proveedor;
-
-// 		return response()->json($response,200);
-// 	}
-
-
-// 	function update(Request $request)
-// 	{
-// 		$proveedor =  Proveedor::find($request->id);
-
-// 		if($proveedor)
-// 		{
-//             $proveedor->razon_social=$request->razon_social;
-//             $proveedor->ruc=$request->ruc;
-//             $proveedor->telefono=$request->telefono;
-//             $proveedor->correo=$request->correo;
-//             $proveedor->direccion=$request->direccion;
-// 			$proveedor->save();
-// 		}
-
-// 		$response = new \stdClass();
-// 		$response->success=true;
-// 		$response->data=$proveedor;
-
-// 		return response()->json($response,200);
-// 	}
-
-// 	/*function patch(Request $request)
-// 	{
-// 		$empleado =  Empleado::find($request->id);
-
-// 		if($empleado)
-// 		{
-
-// 			if(isset($request->codigo))
-// 			$producto->codigo=$request->codigo;
-
-// 			if(isset($request->nombre))
-// 			$producto->nombre=$request->nombre;
-
-// 			$producto->save();
-// 		}
-
-// 		$response = new \stdClass();
-// 		$response->success=true;
-// 		$response->data=$producto;
-
-// 		return response()->json($response,200);
-// 	}*/
-
-
-// 	function store(Request $request)
-// 	{
-// 		$proveedor = new Proveedor();
-// 		$proveedor->razon_social=$request->razon_social;
-//         $proveedor->ruc=$request->ruc;
-//         $proveedor->telefono=$request->telefono;
-//         $proveedor->correo=$request->correo;
-//         $proveedor->direccion=$request->direccion;
-// 		$proveedor->save();
-
-// 		$response = new \stdClass();
-// 		$response->success=true;
-// 		$response->data=$proveedor;
-
-// 		return response()->json($response,200);
-// 	}
-
-// 	function delete($id)
-// 	{
-// 		$response = new \stdClass();
-// 		$response->success=true;
-// 		$response_code=200;
-
-
-// 		$proveedor = Proveedor::find($id);
-
-// 		if($proveedor)
-// 		{
-// 			$proveedor->delete();
-// 			$response->success=true;
-// 			$response_code=200;
-// 		}
-// 		else
-// 		{
-// 			$response->error=["El proveedor ya ha sido eliminado"];
-// 			$response->success=false;
-// 			$response_code=500;
-// 		}
-
-// 		return response()->json($response,$response_code);
-
-// 	}
  }
