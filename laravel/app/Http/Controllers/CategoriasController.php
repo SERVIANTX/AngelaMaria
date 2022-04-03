@@ -33,6 +33,21 @@ class CategoriasController extends Controller
 			 
 		return response($categorias);
 	}
+	function obtenerCategoria()
+	{
+		//$marca =  Marca::all();
+		/*$marca =  DB::table('marcas')
+               ->where('nombre', 'like', 'pruebax2%')
+              ->get();*/
+			  $categorias = DB::select('SELECT * FROM categorias ORDER BY nombre_categoria DESC LIMIT 3');
+			  $response = new \stdClass();
+				$response->success=true;
+				$response->data=$categorias;
+
+		return response()->json($response,200);
+	}
+	
+	
 
     function obtenerItem($id)
 	{

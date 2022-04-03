@@ -133,8 +133,12 @@ Route::middleware('auth:api')->group(function(){
     Route::post('/users', [UsersController::class, 'store']);
 });
 Route::get('/categoriasnombre', [CategoriasController::class, 'obtenerNombre']);
+Route::get('/Categoriasec', [CategoriasController::class, 'obtenerCategoria']);
 Route::get('/productosnombre', [ProductosController::class, 'obtenerNombre']);
+Route::get('/productosmas', [ProductosController::class, 'productosmas']);
 Route::get('/productosdatos/{nombreProducto}', [ProductosController::class, 'obtenerDatos']);
+Route::get('/productoscategoria/{categoria}', [ProductosController::class, 'productosCategorias']);
+Route::get('/productosmarcas/{marcas}', [ProductosController::class, 'productosMarcas']);
 
 Route::get('/productos', [ProductosController::class, 'obtenerLista']);
 /* Router de LOGIN */

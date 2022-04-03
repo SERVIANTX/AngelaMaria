@@ -19,7 +19,6 @@ class MarcasController extends Controller
 
 		return response()->json($response,200);
 	}
-
 	function obtenerNombre()
 	{
 		//$marca =  Marca::all();

@@ -32,6 +32,43 @@ class ProductosController extends Controller
 		return response($producto);
 	}
 
+	function productosmas()
+	{
+		//$marca =  Marca::all();
+		/*$marca =  DB::table('marcas')
+               ->where('nombre', 'like', 'pruebax2%')
+              ->get();*/
+			  $producto = DB::select('SELECT * FROM productos ORDER BY nombre_producto DESC LIMIT 4');
+			  $response = new \stdClass();
+				$response->success=true;
+				$response->data=$producto;
+
+		return response()->json($response,200);
+			 
+	}
+
+	function productosCategorias($categoria)
+	{
+		$producto = DB::select("SELECT * FROM productos WHERE categoria_id = '$categoria'");
+		$response = new \stdClass();
+		$response->success=true;
+		$response->data=$producto;
+
+		return response()->json($response,200);
+	
+	}
+
+	function productosMarcas($marcas)
+	{
+		$producto = DB::select("SELECT m.nombre as marca FROM productos p INNER JOIN marcas m ON p.marca_id = m.id WHERE categoria_id = '$marcas' GROUP BY marca");
+		$response = new \stdClass();
+		$response->success=true;
+		$response->data=$producto;
+
+		return response()->json($response,200);
+	
+	}
+
 	function obtenerDatos($nombreProducto)
 	{
 		//$marca =  Marca::all();
