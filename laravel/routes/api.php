@@ -133,6 +133,7 @@ Route::middleware('auth:api')->group(function(){
     Route::post('/users', [UsersController::class, 'store']);
 });
 Route::get('/categoriasnombre', [CategoriasController::class, 'obtenerNombre']);
+Route::post('/ingresarCliente', [UsuariosController::class, 'storeCliente']);
 Route::get('/Categoriasec', [CategoriasController::class, 'obtenerCategoria']);
 Route::get('/productosnombre', [ProductosController::class, 'obtenerNombre']);
 Route::get('/productosmas', [ProductosController::class, 'productosmas']);

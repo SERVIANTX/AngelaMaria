@@ -31,11 +31,33 @@ class UsuariosController extends Controller
         $admin->numero_documento=$request->numero_documento;
         $admin->email=$request->email;
         $admin->password=$request->password;
+		$admin->telefono=$request->telefono;
 		$admin->save();
 
 		$response = new \stdClass();
 		$response->success=true;
 		$response->data=$admin;
+
+		return response()->json($response,200);
+	}
+
+	function storeCliente(Request $request)
+	{
+		$cliente = new Usuarios();
+		$cliente->roles="Cliente";
+        $cliente->imagen="https://lh3.googleusercontent.com/MTRfQN686fDlm0GSDK-iJji0o2fhJ7-LlFlnp1M2taUUzbnu-0fo2TBdHPLmQouYb8IJ=s85";
+        $cliente->name=$request->name;
+        $cliente->apellidos=$request->apellidos;
+        $cliente->direccion=$request->direccion;
+        $cliente->numero_documento=$request->numero_documento;
+        $cliente->email=$request->email;
+        $cliente->password=$request->password;
+		$cliente->telefono=$request->telefono;
+		$cliente->save();
+
+		$response = new \stdClass();
+		$response->success=true;
+		$response->data=$cliente;
 
 		return response()->json($response,200);
 	}
@@ -65,6 +87,7 @@ class UsuariosController extends Controller
             $admin->numero_documento=$request->numero_documento;
             $admin->email=$request->email;
             $admin->password=$request->password;
+			$admin->telefono=$request->telefono;
 			$admin->save();
 		}
 
