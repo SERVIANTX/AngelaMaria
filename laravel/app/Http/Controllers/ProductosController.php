@@ -38,10 +38,10 @@ class ProductosController extends Controller
 		/*$marca =  DB::table('marcas')
                ->where('nombre', 'like', 'pruebax2%')
               ->get();*/
-			  $producto = DB::select('SELECT * FROM productos ORDER BY nombre_producto DESC LIMIT 4');
-			  $response = new \stdClass();
-				$response->success=true;
-				$response->data=$producto;
+			$producto = DB::select('SELECT * FROM productos ORDER BY nombre_producto DESC LIMIT 4');
+			$response = new \stdClass();
+			$response->success=true;
+			$response->data=$producto;
 
 		return response()->json($response,200);
 			 
@@ -76,8 +76,11 @@ class ProductosController extends Controller
                ->where('nombre', 'like', 'pruebax2%')
               ->get();*/
 			  	$productos = DB::select("SELECT * FROM productos WHERE nombre_producto = '$nombreProducto'");
+				  $response = new \stdClass();
+				  $response->success=true;
+				  $response->data=$productos;
 		  
-				return response($productos);
+				  return response()->json($response,200);
 			// return response($productos);
 	}
 
